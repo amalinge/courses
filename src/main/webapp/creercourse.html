@@ -1,0 +1,32 @@
+<html ng-app="creercourse">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="creercourse.js"></script>
+    <link rel="stylesheet" href="global.css" type="text/css">
+  </head>
+  
+  <body ng-controller="creercourseCtrl">
+  	<h1>Créer une course</h1>
+  
+ 	<form ng-submit="ajouter()">
+ 		<label class="titre">Veuillez choisir une enseigne : </label>
+ 		<select ng-model="ide" required>
+  			<option ng-repeat="enseigne in listenseignes" ng-value="enseigne.ide">{{ enseigne.nomE }} - {{ enseigne.ville }}</option>
+		</select>
+		<br><br>
+		<label class="titre">Veuillez saisir la date de la course : </label>
+		<input type="date" ng-model="date" required/>
+		<br><br>
+
+ 		<label class="titre">Veuillez choisir les produits : </label>
+ 		<select ng-model="idp" required>
+  			<option ng-repeat="produit in listproduits" ng-value="produit.idp">{{ produit.nomP }} - {{ produit.rayon }}</option>
+		</select>
+		<input type="text" value="1" size="3" pattern="[0-9]{1,3}" ng-model="qte"/>
+ 		
+		<input type="submit" value="Créer la course">
+	</form>
+ 	
+  </body>
+</html>

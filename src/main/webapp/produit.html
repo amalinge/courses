@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="produits">
+<head>
+	<meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="produit.js"></script>
+    <link rel="stylesheet" href="global.css" type="text/css">
+	<title>Produits</title>
+</head> 
+<body ng-controller="produitsCtrl">
+	<h1>Liste des produits</h1>
+    <ul>
+      <li ng-repeat="produit in produits" >
+         <span>{{produit.nomP}} - {{produit.rayon}}</span>
+      </li>
+    </ul>
+	</br>
+	
+ 	<form ng-submit="retour()">
+		<input type="submit" value="Retour">
+	</form>
+	
+</body>
+</html>
