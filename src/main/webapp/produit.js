@@ -9,7 +9,6 @@ class LectProduits {
     }
 	 
 	retour () {
-		console.log("2");
 		return this.$http({method: 'GET', url: 'http://localhost:9080/courses'});
     }
 }
@@ -49,8 +48,7 @@ angular
       }
       
       $scope.retour = function () {
-    	  console.log("1");
-          retour();
+    	  LectProduits.retour();
       }   	  
 
 //      lect(0);

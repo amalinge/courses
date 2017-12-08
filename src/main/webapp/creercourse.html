@@ -9,22 +9,34 @@
   <body ng-controller="creercourseCtrl">
   	<h1>Créer une course</h1>
   
- 	<form ng-submit="ajouter()">
+ 	<form>
  		<label class="titre">Veuillez choisir une enseigne : </label>
- 		<select ng-model="ide" required>
-  			<option ng-repeat="enseigne in listenseignes" ng-value="enseigne.ide">{{ enseigne.nomE }} - {{ enseigne.ville }}</option>
+ 		<select ng-model="idE" required>
+  			<option ng-repeat="enseigne in listenseignes" ng-value="enseigne.idE">{{ enseigne.nomE }} - {{ enseigne.ville }}</option>
 		</select>
 		<br><br>
 		<label class="titre">Veuillez saisir la date de la course : </label>
 		<input type="date" ng-model="date" required/>
 		<br><br>
+	</form>
 
+ 	<form ng-show="idE>0 && date>0" ng-submit="creCourse()">
  		<label class="titre">Veuillez choisir les produits : </label>
- 		<select ng-model="idp" required>
-  			<option ng-repeat="produit in listproduits" ng-value="produit.idp">{{ produit.nomP }} - {{ produit.rayon }}</option>
+ 		<select ng-model="idP" required>
+  			<option ng-repeat="produit in listproduits" ng-value="produit.idP">{{ produit.nomP }}</option>
 		</select>
-		<input type="text" value="1" size="3" pattern="[0-9]{1,3}" ng-model="qte"/>
- 		
+ 		<label class="titre"> Quantité : </label>
+		<input type="text" value="1" size="3" pattern="[1-9][0-9]{0,2}" ng-model="qte"/>
+		<input type="button" value="Ajouter" ng-click="ajouter()" ng-show="idP>0 && qte>0">
+		
+		<ul>
+        	<li ng-repeat="achat in achats" >
+         		<span>{{achat.qte}}  {{achat.nomP}} (s)</span>
+ 				<input type="button" value="Supprimer" ng-click="supprimer(achat.idP)">
+ 				<span ng-hide = true>{{ achat.idP }}</span>
+      		</li>
+    	</ul><br>
+		
 		<input type="submit" value="Créer la course">
 	</form>
  	
