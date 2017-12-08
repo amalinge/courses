@@ -8,6 +8,7 @@ class LectEnseignes {
 		return this.$http({method: 'GET', url: 'http://localhost:9080/courses/rest/enseignes'});
     }
 }
+
 LectEnseignes.$inject = ['$http'];
 
 angular

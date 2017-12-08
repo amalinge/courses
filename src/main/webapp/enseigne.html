@@ -4,16 +4,19 @@
 	<meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script src="enseigne.js"></script>
-    <link rel="stylesheet" href="enseigne.css" type="text/css">
+    <link rel="stylesheet" href="global.css" type="text/css">
 	<title>Enseignes</title>
 </head> 
-<body ng-controller="enseignesCtrl">
+<body>
 	<h1>Liste des enseignes</h1>
-    <ul>
+    <ul ng-controller="enseignesCtrl">
       <li ng-repeat="enseigne in enseignes" >
          <span>{{enseigne.nomE}} - {{enseigne.ville}}</span>
       </li>
     </ul>
-   	<pre>{{enseignes|json}}</pre>
+	</br>
+	<form>
+		<button type="submit" formaction="./index.html">Retour</button>
+	</form>
 </body>
 </html>
