@@ -5,14 +5,24 @@ class CreerCourse {
 	}
   
 	lireEnseignes () {
-		return this.$http({method: 'GET', url: 'http://localhost:9080/courses/rest/enseignes'});
+//		return this.$http({method: 'GET', url: 'http://localhost:9080/courses/rest/enseignes'});
+		return this.$http.get('http://localhost:9080/courses/rest/enseignes');
     }
 	  
 	lireProduits () {
-		return this.$http({method: 'GET', url: 'http://localhost:9080/courses/rest/produits'});
+//		return this.$http({method: 'GET', url: 'http://localhost:9080/courses/rest/produits'});
+		return this.$http.get('http://localhost:9080/courses/rest/produits');
     }
 	
-	creCourse() {}
+	creCourse (idE, date) {
+//		return this.$http({method: 'POST', url: 'http://localhost:9080/courses/rest/enseignes/' + idE + '/course', data: {date: date}});
+		return this.$http.post('http://localhost:9080/courses/rest/enseignes/' + idE + '/course', {date: date});
+	}
+	
+	creAchat (idC, idP, qte) {
+		return this.$http.post('http://localhost:9080/courses/rest/courses/' + idC + '/achat/' + idP, {qte: qte});
+	}
+
 }
 
 CreerCourse.$inject = ['$http'];
@@ -26,9 +36,11 @@ angular
       $scope.date = 0;
       $scope.listproduits = [];
       $scope.achats = [];
+      $scope.idC = 0;
       $scope.idP = 0;
       $scope.nomP;
       $scope.qte = 1;
+      $scope.creationOK = false;
 
       
 //      $http({method: 'GET', url: 'http://localhost:9080/cities-rest-backend/rest/villes?from=0&limit=10'})
@@ -66,7 +78,7 @@ angular
       
       $scope.ajouter = function () {
     	  rechnom($scope.idP);
-   	  $scope.achats.push({"idP": $scope.idP, "nomP": $scope.nomP, "qte": $scope.qte});
+    	  $scope.achats.push({"idP": $scope.idP, "nomP": $scope.nomP, "qte": $scope.qte});
     	  $scope.idP = 0;
     	  $scope.qte = 1;
       } 
@@ -93,9 +105,21 @@ angular
       }   	  
       
       $scope.creCourse = function () {
-    	  creCourse();
+    	  $scope.idC = 0;
+    	  CreerCourse.creCourse($scope.idE, $scope.date).then(successCCallback, errorCallback);
       }   	  
-    
+
+      function successCCallback(response) {
+    	  $scope.idC = response.data;
+ 		  for (let i = 0; i < $scope.achats.length ; i++) {
+			 CreerCourse.creAchat($scope.idC, $scope.achats[i].idP, $scope.achats[i].qte).then(successCallback, errorCallback);
+		  };
+	      $scope.creationOK = true;
+      }
+
+      function successCallback(response) {
+      }
+
   }])
   
   .service('CreerCourse', CreerCourse);

@@ -28,12 +28,12 @@ public class Achat {
 
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "COURSE_IDC")
+	@JoinColumn(name = "IDC")
 	private Course course;
 
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "PRODUIT_IDP")
+	@JoinColumn(name = "IDP")
 	private Produit produit;
 
 	@Column(name = "QTE", nullable = false)

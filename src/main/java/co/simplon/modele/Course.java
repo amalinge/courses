@@ -29,12 +29,9 @@ public class Course {
 	@Column(name = "IDC")
 	private int idC;
 
-	@Column(name = "NAME", nullable = false, length = 30)
-	private String nom;
-
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name = "ENSEIGNE_IDE")
+	@JoinColumn(name = "IDE")
 	private Enseigne enseigne;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
