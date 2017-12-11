@@ -32,7 +32,7 @@ public class CourseResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Course> getCourses() {
-		List<Course> courses = entityManager.createNamedQuery("Course.findAll", Course.class).getResultList();;
+		List<Course> courses = entityManager.createNamedQuery("Course.findAll", Course.class).getResultList();
 		return courses;
 	}
 

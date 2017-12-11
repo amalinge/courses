@@ -19,9 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "COURSE")
 @NamedQueries({
-		@NamedQuery(name = "Course.findAll", query = " SELECT c.date, e.nomE, e.ville FROM Course c JOIN c.enseigne e ORDER BY c.date ") })
-//		@NamedQuery(name = "Monument.findAllByVilleId", query = " SELECT m FROM Monument m JOIN m.ville v WHERE v.id = :id ORDER BY m.nom "),
-//		@NamedQuery(name = "Monument.deleteById", query = " DELETE FROM Monument m WHERE m.identifiant = :id") })
+		@NamedQuery(name = "Course.findAll", query = " SELECT c FROM Course c JOIN c.enseigne e ORDER BY c.date ") })
 public class Course {
 
 	@Id

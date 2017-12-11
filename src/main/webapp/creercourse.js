@@ -42,20 +42,6 @@ angular
       $scope.qte = 1;
       $scope.creationOK = false;
 
-      
-//      $http({method: 'GET', url: 'http://localhost:9080/cities-rest-backend/rest/villes?from=0&limit=10'})
-////			method, pas obligatoire, car GET par défaut
-//      	.then(function(response) {
-//    		$scope.cities = response.data;
-//        }, function() {
-//    		console.error ("Erreur : ", arguments);
-////			cas d'erreur : affichage des arguments de response
-//     	});
-      
-//		avec extraction des fonctions :
-//        $http({method: 'GET', url: 'http://localhost:9080/cities-rest-backend/rest/villes?from=0&limit=10'})
-//    		.then(successCallback, errorCallback);
-      
       CreerCourse.lireEnseignes().then(successECallback, errorCallback);
 
       function successECallback(response) {

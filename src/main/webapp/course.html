@@ -11,7 +11,14 @@
 	<h1>Liste des courses</h1>
     <ul>
       <li ng-repeat="course in courses" >
-         <span>{{course.nomP}} - {{course.rayon}}</span>
+         <span>le {{course.date | date:'dd/MM/yyyy'}} à {{course.enseigne.nomE}} - {{course.enseigne.ville}}</span>
+         <input type="button" value="Détail" ng-click="detail(course.idC)">
+ 		 <span ng-hide = true>{{ course.idC }}</span>
+ 		 <ul ng-show="ifDetail(course.idC)">
+      		 <li ng-repeat="achat in achats" >
+         	 	<span>{{achat.qte}}  {{achat.nomP}} (s)</span>
+		     </li>
+	     </ul>
       </li>
     </ul>
 	</br>
