@@ -19,22 +19,27 @@ class LectCourses {
 LectCourses.$inject = ['$http'];
 
 angular
-  .module('courses', [])
+  .module('affcourses', [])
   
-  .controller('coursesCtrl', ['$scope', '$http', 'LectCourses', function ($scope, $http, LectCourses) {
+  .controller('affcoursesCtrl', ['$scope', '$http', 'LectCourses', function ($scope, $http, LectCourses) {
       $scope.courses = [];
       $scope.detail = [];
-      $scope.achats = [[]];
+      $scope.achats = [];
+      $scope.datejma = [];
 
       LectCourses.lecture().then(successCCallback, errorCallback);
 
       function successCCallback(response) {
     	  $scope.courses = response.data;
  		  for (let i = 0; i < $scope.courses.length ; i++) {
+ 			  $scope.datejma[i]=$scope.courses[i].date.charAt(8) + $scope.courses[i].date.charAt(9) + "/" +
+ 			  					$scope.courses[i].date.charAt(5) + $scope.courses[i].date.charAt(6) + "/" +
+ 			  					$scope.courses[i].date.charAt(0) + $scope.courses[i].date.charAt(1) + $scope.courses[i].date.charAt(2) + $scope.courses[i].date.charAt(3);
  	          LectCourses.lectureAchats($scope.courses[i].idC)
  	      		.then(function(response) {
  	      			$scope.achats[i] = response.data;
- 	      		}, errorCallback);
+  	      		}, errorCallback);
+ 	          $scope.detail[i]=false;
  		  };
       }
       
@@ -42,29 +47,8 @@ angular
     	  console.error ("Erreur : ", arguments);
       }
  
-      $scope.detail = function (idC) {
-  		  let trouve = false;
- 		  for (let i = 0; i < $scope.courses.length && !trouve ; i++) {
-  			  if ($scope.courses[i].idC == idC) {
-  				  $scope.detail[i] = true;
-  				  trouve = true;
-  			  };
-		  };
-      }   	  
-      
-      $scope.ifDetail = function (idC) {
-  		  let trouve = false;
- 		  for (let i = 0; i < $scope.courses.length&& !trouve  ; i++) {
-  			  if ($scope.courses[i].idC == idC) {
-  				  trouve = true;
-  			  };
-		  };
-		  if (trouve && $scope.detail[i]) {
-			  return true;
-		  }
-		  else {
-			  return false;
-		  }
+      $scope.majdetail = function (i) {
+    	  $scope.detail[i] = !$scope.detail[i];
       }   	  
 
       $scope.retour = function () {

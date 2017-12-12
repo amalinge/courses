@@ -93,6 +93,9 @@ angular
       $scope.creCourse = function () {
     	  $scope.idC = 0;
     	  CreerCourse.creCourse($scope.idE, $scope.date).then(successCCallback, errorCallback);
+    	  $scope.idE = 0;
+    	  $scope.date = 0;
+    	  $scope.achats = [];
       }   	  
 
       function successCCallback(response) {

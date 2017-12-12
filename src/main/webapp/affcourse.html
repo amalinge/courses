@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="affcourses">
+<head>
+	<meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="affcourse.js"></script>
+    <link rel="stylesheet" href="global.css" type="text/css">
+	<title>Courses</title>
+</head> 
+<body ng-controller="affcoursesCtrl">
+	<h1>Liste des courses</h1>
+    <ul>
+      <li ng-repeat="course in courses" >
+         <span>le {{datejma[$index]}} à {{course.enseigne.nomE}} - {{course.enseigne.ville}}</span>
+         <input type="button" value="Détail" ng-click="majdetail($index)">
+ 		 <ul ng-show="detail[$index]==true">
+      		 <li ng-repeat="achat in achats[$index]">
+         	 	<span>{{achat.qte}}  {{achat.produit.nomP}} (s)</span>
+		     </li>
+	     </ul>
+      </li>
+    </ul>
+	</br>
+	
+	<form>
+		<input type="button" value="Retour" onclick="history.go(-1)">
+	</form>
+</body>
+</html>

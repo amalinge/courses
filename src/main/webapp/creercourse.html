@@ -35,9 +35,13 @@
  				<input type="button" value="Supprimer" ng-click="supprimer(achat.idP)">
  				<span ng-hide = true>{{ achat.idP }}</span>
       		</li>
-    	</ul><br>
+    	</ul>
 		
-		<input "type="submit" value="Créer la course">
+		<input type="submit" value="Créer la course" ng-show="achats.length>0">
+	</form><br>
+	
+	<form>
+		<input type="button" value="Retour" onclick="history.go(-1)">
 	</form>
  	
   </body>
