@@ -17,10 +17,12 @@ class LectCourses {
     }
 }
 LectCourses.$inject = ['$http'];
+// Excellent !
+// Attention cependant aux indentations
 
 angular
   .module('affcourses', [])
-  
+  // Idéalement à séparer en fichiers indépendants
   .controller('affcoursesCtrl', ['$scope', '$http', 'LectCourses', function ($scope, $http, LectCourses) {
       $scope.courses = [];
       $scope.detail = [];
@@ -56,5 +58,6 @@ angular
       }   	  
 
   }])
-  
+  // Séparation en multiples fichiers pour éviter par exemple de se retrouver avec 50 lignes entre déclaration de la classe et son utilisation.
+  // Ce qui peut embrouiller
   .service('LectCourses', LectCourses);
