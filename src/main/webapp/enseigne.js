@@ -22,6 +22,7 @@ angular
       function successCallback(response) {
     	  $scope.enseignes = response.data;
       }
+	  
       function errorCallback(response) {
     	  console.error ("Erreur : ", arguments);
       }
